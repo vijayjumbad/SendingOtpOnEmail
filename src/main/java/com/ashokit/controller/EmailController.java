@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ashokit.entity.OtpEntity;
@@ -47,6 +48,17 @@ public class EmailController {
 		return "otp saved successfully";
 		 else
 			 return "otp not saved successfully";
+		 
+	 }
+	 @GetMapping("/getotp")
+	 public ResponseEntity<String> getOtp(@RequestParam("otp")int otp)
+	 {
+		 OtpEntity result = service.getOtp(otp);
+		 if(result!=null)
+		return new ResponseEntity<String>("otp feched successfull ", HttpStatus.OK);
+		 else
+			 return new ResponseEntity<String>("otp not feched successfull ", HttpStatus.BAD_REQUEST);
+		 
 		 
 	 }
 

@@ -1,5 +1,7 @@
 package com.ashokit.service;
 
+import java.util.Optional;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,13 @@ public class EmailServiceImpl implements IEmailService {
 	public String saveOtp(OtpEntity otp) {
 		 OtpEntity save = repo.save(otp);
 		return  save!=null ? "Otp not saved":"Otp is saved";
+	}
+	
+	@Override
+	public OtpEntity getOtp(int otp) {
+		OtpEntity findByOtp = repo.findById(otp).get();
+		return findByOtp;
+		
 	}
 
 }
